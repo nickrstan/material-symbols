@@ -187,16 +187,16 @@ export class MaterialDesignIcon extends LitElement {
       }
 
       .m-i {
-        font-family: 'Material Icons';
+        font-family: 'Material Symbols';
       }
       .m-i-outlined {
-        font-family: 'Material Icons Outlined';
+        font-family: 'Material Symbols Outlined';
       }
       .m-i-sharp {
-        font-family: 'Material Icons Sharp';
+        font-family: 'Material Symbols Sharp';
       }
-      .m-i-round {
-        font-family: 'Material Icons Round';
+      .m-i-rounded {
+        font-family: 'Material Symbols Rounded';
       }
       .m-i-two-tone {
         font-family: 'Material Icons Two Tone';
