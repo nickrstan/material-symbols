@@ -15,41 +15,4 @@ export class MaterialDesignIconOutlined extends MaterialDesignIcon {
       "Outlined"
     );
   }
-  /**
-   * Initializing
-   * tone
-   */
-  initializeTone() {
-    this.tone =
-      "outlined";
-    if (
-      this.hasAttribute(
-        "round"
-      )
-    ) {
-      this.tone =
-        "round";
-    } else if (
-      this.hasAttribute(
-        "sharp"
-      )
-    ) {
-      this.tone =
-        "sharp";
-    } else if (
-      this.hasAttribute(
-        "filled"
-      )
-    ) {
-      this.tone =
-        "filled";
-    } else if (
-      this.hasAttribute(
-        "two-tone"
-      )
-    ) {
-      this.tone =
-        "two-tone";
-    }
-  }
 }
