@@ -168,7 +168,7 @@ export class MaterialDesignIcon extends LitElement {
       .m-i,
       .m-i-outlined,
       .m-i-sharp,
-      .m-i-round,
+      .m-i-rounded,
       .m-i-two-tone {
         font-weight: normal;
         font-style: normal;
