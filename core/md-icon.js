@@ -29,7 +29,7 @@ export class MaterialDesignIcon extends LitElement {
    */
   constructor(style = 'Outlined') {
     super();
-    this.tone = style.toLowerCase();
+    this.style = style.toLowerCase();
     this.baseFontUrl = `https://fonts.googleapis.com/css2?family=Material+Symbols+${style}:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`;
     this.initializeTone();
     this.initializeFont();
