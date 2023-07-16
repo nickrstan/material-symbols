@@ -23,6 +23,8 @@ export class MaterialDesignIcon extends LitElement {
     return {
       icon: String,
       tone: String,
+      style:
+        String,
       isClickable:
         Boolean,
     };
@@ -35,8 +37,9 @@ export class MaterialDesignIcon extends LitElement {
     style = "Outlined"
   ) {
     super();
-    //fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200+Outlined
-    https: this.baseFontUrl = `https://fonts.googleapis.com/css2?family=Material+Symbols+${style}:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`;
+    this.tone =
+      style.toLowerCase();
+    this.baseFontUrl = `https://fonts.googleapis.com/css2?family=Material+Symbols+${style}:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`;
     this.initializeTone();
     this.initializeFont();
   }
@@ -234,7 +237,7 @@ export class MaterialDesignIcon extends LitElement {
             .isClickable
             ? "c"
             : ""} m-i${this
-            .tone &&
+            .style &&
           this
             .tone !=
             "filled"
