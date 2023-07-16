@@ -1,0 +1,12 @@
+# Add files here to ignore them from prettier formatting
+
+/dist
+/coverage
+/.vscode
+/node_modules
+**/project.json
+**/CHANGELOG.md
+**/package.json
+**/*.html
+*.json
+**/knowtal-bumble-bee.service.ts

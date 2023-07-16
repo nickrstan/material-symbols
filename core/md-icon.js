@@ -7,12 +7,8 @@
  * @author jordan.daigle
  * @date 2019-07-20
  */
-import {
-  LitElement,
-  html,
-  css,
-} from "lit-element/lit-element";
-import "@polymer/paper-ripple/paper-ripple";
+import { LitElement, html, css } from 'lit-element/lit-element';
+import '@polymer/paper-ripple/paper-ripple';
 
 export class MaterialDesignIcon extends LitElement {
   /**
@@ -23,22 +19,17 @@ export class MaterialDesignIcon extends LitElement {
     return {
       icon: String,
       tone: String,
-      style:
-        String,
-      isClickable:
-        Boolean,
+      style: String,
+      isClickable: Boolean,
     };
   }
 
   /**
    * Constructor
    */
-  constructor(
-    style = "Outlined"
-  ) {
+  constructor(style = 'Outlined') {
     super();
-    this.tone =
-      style.toLowerCase();
+    this.tone = style.toLowerCase();
     this.baseFontUrl = `https://fonts.googleapis.com/css2?family=Material+Symbols+${style}:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`;
     this.initializeTone();
     this.initializeFont();
@@ -49,44 +40,28 @@ export class MaterialDesignIcon extends LitElement {
    * connected callback
    */
   connectedCallback() {
-    if (
-      this.innerHTML.trim()
-    ) {
+    if (this.innerHTML.trim()) {
       this.initialiseIcon();
     } else {
       super.connectedCallback();
-      let instance =
-        this;
-      let childrenConnectedCallback =
-        () => {
-          if (
-            instance.innerHTML.trim()
-          ) {
-            instance.initialiseIcon();
-          }
-        };
+      let instance = this;
+      let childrenConnectedCallback = () => {
+        if (instance.innerHTML.trim()) {
+          instance.initialiseIcon();
+        }
+      };
 
-      let observer =
-        new MutationObserver(
-          childrenConnectedCallback
-        );
-      let config =
-        {
-          attributes: false,
-          childList: true,
-          subtree: true,
-        };
-      observer.observe(
-        instance,
-        config
-      );
+      let observer = new MutationObserver(childrenConnectedCallback);
+      let config = {
+        attributes: false,
+        childList: true,
+        subtree: true,
+      };
+      observer.observe(instance, config);
 
-      setTimeout(
-        () => {
-          observer.disconnect();
-        },
-        0
-      );
+      setTimeout(() => {
+        observer.disconnect();
+      }, 0);
     }
   }
 
@@ -95,14 +70,9 @@ export class MaterialDesignIcon extends LitElement {
    * icon
    */
   initialiseIcon() {
-    this.isClickable =
-      this.hasAttribute(
-        "clickable"
-      );
-    this.icon =
-      this.innerHTML;
-    this.innerHTML =
-      "";
+    this.isClickable = this.hasAttribute('clickable');
+    this.icon = this.innerHTML;
+    this.innerHTML = '';
     this.update(); //for some reason requestUpdate() doesn't work but update() does
   }
 
@@ -111,36 +81,15 @@ export class MaterialDesignIcon extends LitElement {
    * tone
    */
   initializeTone() {
-    this.tone =
-      "filled";
-    if (
-      this.hasAttribute(
-        "round"
-      )
-    ) {
-      this.tone =
-        "round";
-    } else if (
-      this.hasAttribute(
-        "sharp"
-      )
-    ) {
-      this.tone =
-        "sharp";
-    } else if (
-      this.hasAttribute(
-        "outlined"
-      )
-    ) {
-      this.tone =
-        "outlined";
-    } else if (
-      this.hasAttribute(
-        "two-tone"
-      )
-    ) {
-      this.tone =
-        "two-tone";
+    this.tone = 'filled';
+    if (this.hasAttribute('round')) {
+      this.tone = 'round';
+    } else if (this.hasAttribute('sharp')) {
+      this.tone = 'sharp';
+    } else if (this.hasAttribute('outlined')) {
+      this.tone = 'outlined';
+    } else if (this.hasAttribute('two-tone')) {
+      this.tone = 'two-tone';
     }
   }
 
@@ -151,34 +100,15 @@ export class MaterialDesignIcon extends LitElement {
   initializeFont() {
     //font-face are not loading inside shadow-root
     //so we append it to the html <head> element
-    let url =
-      this.getFontURL(
-        this
-          .tone
-      );
-    if (
-      !MaterialDesignIcon.fontInitialised ||
-      !MaterialDesignIcon
-        .fontInitialised[
-        url
-      ]
-    ) {
-      MaterialDesignIcon.fontInitialised =
-        MaterialDesignIcon.fontInitialised ||
-        {};
-      MaterialDesignIcon.fontInitialised[
-        url
-      ] = 1;
+    let url = this.getFontURL(this.tone);
+    if (!MaterialDesignIcon.fontInitialised || !MaterialDesignIcon.fontInitialised[url]) {
+      MaterialDesignIcon.fontInitialised = MaterialDesignIcon.fontInitialised || {};
+      MaterialDesignIcon.fontInitialised[url] = 1;
       document
-        .querySelector(
-          "head"
-        )
+        .querySelector('head')
         .insertAdjacentHTML(
-          "beforeend",
-          `<link rel="stylesheet" type="text/css" href="${this.getFontURL(
-            this
-              .tone
-          )}" />`
+          'beforeend',
+          `<link rel="stylesheet" type="text/css" href="${this.getFontURL(this.tone)}" />`
         );
     }
   }
@@ -188,39 +118,16 @@ export class MaterialDesignIcon extends LitElement {
    * url based on
    * initialized tone
    */
-  getFontURL(
-    tone
-  ) {
-    let url =
-      this
-        .baseFontUrl;
-    if (
-      tone !=
-      "filled"
-    ) {
+  getFontURL(tone) {
+    let url = this.baseFontUrl;
+    if (tone != 'filled') {
       url =
         url +
-        "+" +
+        '+' +
         tone
-          .split(
-            /[-]/
-          )
-          .map(
-            (
-              i
-            ) =>
-              i
-                .charAt(
-                  0
-                )
-                .toUpperCase() +
-              i.substring(
-                1
-              )
-          )
-          .join(
-            "+"
-          );
+          .split(/[-]/)
+          .map((i) => i.charAt(0).toUpperCase() + i.substring(1))
+          .join('+');
     }
     return url;
   }
@@ -230,39 +137,17 @@ export class MaterialDesignIcon extends LitElement {
    */
   render() {
     return html`
-      <div
-        class="icon">
+      <div class="icon">
         <i
-          class="${this
-            .isClickable
-            ? "c"
-            : ""} m-i${this
-            .style &&
-          this
-            .tone !=
-            "filled"
-            ? "-" +
-              this
-                .tone
-            : ""}"
-          >${(
-            this
-              .icon ||
-            ""
-          )
+          class="${this.isClickable ? 'c' : ''} m-i${this.style && this.style != 'filled'
+            ? '-' + this.style
+            : ''}">
+          ${(this.icon || '')
             .trim()
-            .replace(
-              /([-]|\s)/g,
-              "_"
-            )
-            .toLowerCase()}</i
-        >
-        ${this
-          .isClickable
-          ? html`<paper-ripple
-              class="circle"
-              recenters></paper-ripple>`
-          : ``}
+            .replace(/([-]|\s)/g, '_')
+            .toLowerCase()}
+        </i>
+        ${this.isClickable ? html`<paper-ripple class="circle" recenters></paper-ripple>` : ``}
       </div>
     `;
   }
@@ -297,24 +182,24 @@ export class MaterialDesignIcon extends LitElement {
         white-space: nowrap;
         word-wrap: normal;
         direction: ltr;
-        -webkit-font-feature-settings: "liga";
+        -webkit-font-feature-settings: 'liga';
         -webkit-font-smoothing: antialiased;
       }
 
       .m-i {
-        font-family: "Material Icons";
+        font-family: 'Material Icons';
       }
       .m-i-outlined {
-        font-family: "Material Icons Outlined";
+        font-family: 'Material Icons Outlined';
       }
       .m-i-sharp {
-        font-family: "Material Icons Sharp";
+        font-family: 'Material Icons Sharp';
       }
       .m-i-round {
-        font-family: "Material Icons Round";
+        font-family: 'Material Icons Round';
       }
       .m-i-two-tone {
-        font-family: "Material Icons Two Tone";
+        font-family: 'Material Icons Two Tone';
       }
 
       .c {
