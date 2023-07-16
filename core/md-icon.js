@@ -35,7 +35,8 @@ export class MaterialDesignIcon extends LitElement {
     style = "Outlined"
   ) {
     super();
-    this.baseFontUrl = `https://fonts.googleapis.com/css2?family=Material+Symbols+${style}:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`;
+    //fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200+Outlined
+    https: this.baseFontUrl = `https://fonts.googleapis.com/css2?family=Material+Symbols+${style}:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`;
     this.initializeTone();
     this.initializeFont();
   }
@@ -171,12 +172,10 @@ export class MaterialDesignIcon extends LitElement {
         )
         .insertAdjacentHTML(
           "beforeend",
-          `
-                <link rel="stylesheet" type="text/css" href="${this.getFontURL(
-                  this
-                    .tone
-                )}" />
-            `
+          `<link rel="stylesheet" type="text/css" href="${this.getFontURL(
+            this
+              .tone
+          )}" />`
         );
     }
   }
